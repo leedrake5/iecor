@@ -1,0 +1,162 @@
+Language,first_node_depth,proximate_node_depth,proximate_node_posterior_probability,most_recent,cladesOrder,clade_id,iso_code,language_id,ascii_name
+Albanian: Arbëresh,3663,1100,1,0,3,30,aae,286,AlbanianArberesh
+Albanian: Gheg,3663,250,1,0,3,30,aln,3,AlbanianGheg
+Albanian: Standard,3663,250,1,0,3,30,sqi,143,AlbanianStandard
+Anglo-Norman,5564,1200,1,750,3,5,xno,203,AngloNorman
+Armenian: Classical,5310,1650,1,1400,3,31,xcl,129,ClassicalArmenian
+Armenian: Eastern,5310,400,1,0,3,31,hye,8,ArmenianEastern
+Armenian: Western,5310,400,1,0,3,31,hyw,7,ArmenianWestern
+Assamese,5520,650,1,0,2,24,asm,272,Assamese
+Avestan: Younger,5520,4150,1,3000,2,23,ave,128,AvestanYounger
+Bactrian,5520,3250,0.24,1400,2,23,xbc,278,Bactrian
+Bakhtiari,5520,850,0.96,0,2,23,bqi,257,Bakhtiari
+Balochi: Sistani,5520,1500,1,0,2,23,bgn,274,BalochiSistani
+Belarusian,3663,200,1,0,3,11,bel,16,Belarusian
+Bengali,5520,1500,0.71,0,2,24,ben,10,Bengali
+Bhojpuri,5520,550,0.99,0,3,33,bho,222,Bhojpuri
+Breton: Gwened,4889,400,1,0,3,15,bre,234,BretonGwened
+Breton: Treger,4889,400,1,0,3,15,bre,229,BretonTreger
+Bulgarian,3663,500,0.28,0,3,11,bul,15,Bulgarian
+Catalan,5564,850,1,0,3,5,cat,17,Catalan
+Czech,3663,400,0.99,0,3,11,ces,18,Czech
+Dalmatian: Vegliote,5564,1100,0.24,150,3,5,dlm,207,DalmatianVegliote
+Danish,4889,400,1,0,3,1,dan,20,Danish
+Delvari,5520,500,1,0,2,23,fay,280,Delvari
+Dutch,4889,400,0.76,0,3,1,nld,21,Dutch
+Elfdalian,4889,650,0.95,0,3,1,ovd,145,Elfdalian
+English,4889,1250,1,0,3,1,eng,22,English
+Faroese,4889,1100,1,0,3,1,fao,23,Faroese
+Flemish,4889,400,0.76,0,1,2,vls,24,Flemish
+Franco-Provençal,5564,300,0.99,0,3,5,frp,220,FrancoProvencal
+French,5564,300,0.99,0,3,5,fra,25,French
+Frisian,4889,500,1,0,3,1,frs,26,Frisian
+Friulian,5564,800,0.57,0,3,5,fur,122,Friulian
+Gaelic: Irish,4889,1000,1,0,3,15,gle,38,GaelicIrish
+Gaelic: Manx,4889,600,1,200,3,15,glv,147,GaelicManx
+Gaelic: Scottish,4889,600,1,0,3,15,gla,115,GaelicScottish
+Gaulish,4889,2800,0.79,2050,3,15,xtg,140,Gaulish
+Gawarbati,6981,1950,0.98,0,2,24,gwt,288,Gawarbati
+Gawri,5520,1200,1,0,2,24,gwc,290,Gawri
+German,6981,1200,1,0,3,1,deu,27,German
+German: Bernese,4889,200,1,0,3,1,gsw,263,GermanBernese
+Gothic,4889,2400,1,2650,3,1,got,303,Gothic
+Greek: Ancient,5310,2500,1,2400,,,,,
+Greek: Cappadocian,5310,900,0.27,0,3,21,cpg,210,GreekCappodocian
+Greek: Cypriot,5310,550,0.7,0,3,21,ell,195,GreekCypriot
+Greek: Italiot,5310,900,0.27,0,2,42,ell,201,GreekItaliot
+Greek: Modern Std,5310,550,0.7,0,3,21,ell,32,Greek
+Greek: Mycenaean,5310,3400,1,3300,3,21,gmy,173,MycenaeanGreek
+Greek: New Testament,5310,2050,0.94,1950,3,21,grc,177,NTGreek
+Greek: Pontic,5310,950,0.14,0,3,21,pnt,211,GreekPontic
+Hawrami,5520,500,0.87,0,2,23,hac,282,Hawrami
+Hindi,5520,200,1,0,2,24,hin,35,Hindi
+Hittite,6981,4750,1,3500,3,22,hit,80,Hittite
+Icelandic,4889,1000,0.99,0,3,1,isl,36,Icelandic
+Italian,5564,300,1,0,3,5,ita,39,Italian
+Kalaṣa-alâ: Nišeigrâm,6981,750,0.78,0,2,27,wbk,216,KalasaAlaNiseigram_Legacy
+Kamviri,6981,150,1,0,2,27,xvi,312,Kamviri
+Kashmiri,5520,2550,0.82,0,2,24,kas,40,Kashmiri
+Kashubian,3663,400,1,0,3,11,csb,175,Kashubian
+Kâta-vari: Eastern,6981,100,0.92,0,2,27,bsh,314,KatavariEastern
+Kâta-vari: Ktivi,6981,100,0.92,0,2,27,bsh,315,KatavariKtivi
+Khotanese,5520,3300,0.24,1500,2,23,kho,174,Khotanese
+Khowar,5520,2500,0.69,0,2,24,khw,284,Khowar
+Khwarazmian,5520,2500,0.67,900,2,23,xco,287,Khwarazmian
+Kumzari,5520,1100,0.68,0,2,23,zum,242,Kumzari
+Kurdish C.: Jafi,5520,500,0.87,0,2,23,ckb,273,KurdishCJafi
+Kurdish N.: Bahdini,5520,1700,1,0,2,23,kmr,118,KurdishNBahdini
+Kurdish S.: Elami,6981,900,1,0,2,23,sdh,285,KurdishSElami
+Kurdish S.: Qorveh,5520,700,0.78,0,2,23,sdh,308,KurdishSQorveh
+Ladin,5564,1050,0.24,0,3,5,lld,42,Ladin
+Lari,5520,500,1,0,2,23,lrl,279,Lari
+Late Cornish,4889,850,1,300,3,15,cor,230,LateCornish
+Latgalian,3663,300,1,0,3,11,ltg,190,Latgalian
+Latin,5564,3550,1,2050,3,5,lat,112,Latin
+Latvian,3663,300,1,0,3,11,lav,44,Latvian
+Lithuanian,3663,1400,1,0,3,11,lit,46,Lithuanian
+Luvian,6932,4700,1,3400,3,22,xlu,133,Luvian
+Luxembourgish,4889,400,1,0,3,1,ltz,120,Luxembourgish
+Macedonian,3663,500,0.28,0,3,11,mkd,92,Macedonian
+Macedonian: Suho,3663,100,1,0,3,11,mkd,254,MacedonianSuho
+Macedonian: Visoka,3663,100,1,0,3,11,mkd,253,MacedonianVisoka
+Magahi,5520,750,0.51,0,2,24,mag,144,Magahi
+Maithili,5520,800,1,0,2,24,mai,111,Maithili
+Marathi,6981,1750,1,0,2,24,mar,50,Marathi
+Mazanderani,5520,650,0.88,0,2,23,mzn,265,Mazanderani
+Megleno-Romanian,5564,850,1,0,3,5,ruq,281,MeglenoRomanian
+Middle Breton,4889,650,1,450,3,15,xbm,172,MiddleBreton
+Middle Cornish,4889,850,1,650,3,15,cnx,231,MiddleCornish
+Middle Dutch,4889,950,0.91,800,3,1,dum,300,MiddleDutch
+Middle High German,4889,1100,0.68,750,3,1,gmh,299,MiddleHighGerman
+Middle Persian,5520,2200,1,1650,2,23,xmn,178,MiddlePersian
+Middle Welsh,4889,950,0.84,700,3,15,wlm,239,MiddleWelsh
+Milanese,5564,300,1,0,3,5,lmo,311,Milanese
+Neapolitan,5564,750,0.59,0,3,5,nap,189,Neapolitan
+Nepali,5520,1400,0.49,0,2,24,nep,51,Nepali
+Norwegian: Bokmål,4889,50,1,0,3,1,nob,58,NorwegianBokmal
+Norwegian: Nynorsk,4889,50,1,0,3,1,nno,304,NorwegianNynorsk
+Old Breton,4889,1500,0.97,1050,3,15,obt,148,OldBreton
+Old Catalan,5564,850,1,750,3,5,cat,289,OldCatalan
+Old Church Slavonic,3663,1400,0.45,1000,3,11,chu,100,OldChurchSlavonic
+Old Czech,3663,800,1,650,3,11,ces,243,OldCzech
+Old English,4889,1250,1,1050,3,1,ang,298,OldEnglish
+Old Frisian,4889,1200,0.72,650,1,2,ofs,301,OldFrisian
+Old High German,4889,1400,0.96,0,3,1,goh,295,OldHighGerman
+Old Icelandic,4889,1000,0.99,800,3,1,non,302,OldIcelandic
+Old Irish,4889,1600,1,1250,3,15,sga,127,OldIrish
+Old Novgorod,3663,1250,0.95,850,3,11,orv,245,OldNovgorod
+Old Occitan,5564,900,1,700,3,5,pro,283,OldOccitan
+Old Persian,5520,2850,0.99,2450,2,23,peo,131,OldPersian
+Old Polish,3663,700,1,550,3,11,pol,238,OldPolish
+Old Prussian,3663,2500,1,500,3,11,prg,108,OldPrussian
+Old Saxon,4889,1500,1,1200,3,1,osx,297,OldSaxon
+Old Spanish,5564,800,0.81,700,3,5,osp,204,OldSpanish
+Old Swedish,4889,1150,0.53,650,3,1,swe,157,OldSwedish
+Old Welsh,4889,1200,1,1000,3,15,owl,150,Old Welsh
+Oscan,5564,2750,0.95,2200,3,5,osc,130,Oscan
+Ossetic: Digor,5520,250,1,0,2,23,oss,125,OsseticDigor
+Ossetic: Iron,5520,250,1,0,3,33,oss,124,OsseticIron
+Pali,5520,3800,1,2500,2,24,pli,162,Pali
+Palula,5520,1200,1,0,2,24,phl,219,Palula
+Parthian,5520,2600,0.91,2050,2,23,xpr,179,Parthian
+Pashai: North-West,5520,2250,0.59,0,2,24,glh,293,PashaiNorthWest
+Pashto,5520,2550,0.63,0,2,23,pbu,292,Pashto
+Persian: Tehran,5520,750,0.38,0,2,23,pes,54,PersianTehran
+Polabian,3663,650,1,300,3,11,pox,176,Polabian
+Polish,3663,400,1,0,3,11,pol,55,Polish
+Portuguese,5564,950,1,0,3,5,por,56,Portuguese
+Portuguese: Brazilian,5564,50,1,0,3,5,por,305,PortugueseBrazilian
+Punjabi,5520,400,1,0,2,24,pan,266,Punjabi
+Raji: Barzoki,5520,750,1,0,2,23,,291,RajiBarzoki
+Romanian,5564,850,1,0,3,5,ron,59,Romanian
+Russian,3663,700,1,0,3,11,rus,60,Russian
+Rusyn,3663,750,1,0,2,12,rue,249,Rusyn
+Saṇu-viri: Wâmâ,6981,,,0,2,27,ask,317,SanuviriWama
+Sardinian: Logudoro,5564,550,1,0,3,5,src,62,SardinianLogudoro
+Sardinian: Nuoro,5564,550,1,0,3,5,src,63,SardinianNuoro
+Sarikoli,5520,1550,1,0,2,23,srh,296,Sarikoli
+Serbo-Croat,3663,800,1,0,3,11,hrv,95,SerboCroatian
+Sinhalese,5520,3050,1,0,2,24,sin,65,Sinhalese
+Slovak,3663,400,0.99,0,3,11,slk,66,Slovak
+Slovene,3663,150,0.99,0,3,11,slv,97,Slovene
+Slovene: Early Modern,3663,500,1,300,3,11,slv,259,SloveneEarlyModern
+Slovene: Kostel,3663,150,0.99,0,3,11,slv,260,SloveneKostel
+Sogdian,5520,2800,1,1100,2,23,sog,271,Sogdian
+Sorbian: Lower,3663,250,1,0,3,11,dsb,47,SorbianLower
+Sorbian: Upper,3663,250,1,0,3,11,hsb,48,SorbianUpper
+Spanish,5564,800,0.81,0,3,5,spa,68,Spanish
+Swedish,4889,600,0.95,0,3,1,swe,69,Swedish
+Tati,5520,650,0.88,0,2,23,tks,277,Tati
+Tocharian A,6932,2850,1,1400,3,32,xto,81,TocharianA
+Tocharian B,6932,2850,1,1400,3,32,txb,82,TocharianB
+Tsakonian: Peloponnese,5310,600,1,0,3,21,tsd,152,TsakonianPeloponnese
+Tsakonian: Propontis,5310,400,1,0,3,21,tsd,188,TsakonianPropontis
+Ukrainian,3663,200,1,0,3,11,ukr,73,Ukrainian
+Umbrian,5564,2750,0.95,2150,3,5,xum,132,Umbrian
+Urdu,5520,200,1,0,2,24,urd,119,Urdu
+Vâsi-vari: Paṣki,6981,1600,1,0,2,27,prn,307,VasiVariPaski
+Vedic: Early,5520,4400,1,3550,2,24,san,105,VedicEarly
+Wakhi,5520,1550,1,0,2,23,wbl,75,Wakhi
+Walloon,5564,600,0.98,0,3,5,wln,76,Walloon
+Welsh: North,4889,950,0.84,0,3,15,cym,236,WelshNorth
+Yaghnobi,5520,1800,1,0,2,23,yai,208,Yaghnobi
