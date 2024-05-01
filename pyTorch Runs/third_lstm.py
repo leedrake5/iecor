@@ -132,28 +132,33 @@ def prepareData(lang1, lang2, reverse=False):
 #print(random.choice(pairs))
 
 class EncoderRNN(nn.Module):
-    def __init__(self, input_size, hidden_size, dropout_p=0.1, num_layers=2):  # Add a new parameter for number of layers
+    def __init__(self, input_size, hidden_size, dropout_p=0.1, num_copies=4, num_gru_layers=2):  # Add a new parameter for number of GRU layers
         super(EncoderRNN, self).__init__()
         self.hidden_size = hidden_size
         self.embedding = nn.Embedding(input_size, hidden_size)
-        self.gru_layers = nn.ModuleList([nn.GRU(hidden_size, hidden_size, batch_first=True) for _ in range(num_layers)])  # Create a list of GRU layers
+        self.grus = nn.ModuleList([nn.GRU(hidden_size, hidden_size, batch_first=True) for _ in range(num_gru_layers)])  # Create a list of GRU layers
         self.dropout = nn.Dropout(dropout_p)
+        # Additional input features
+        self.input_clade_fc = nn.Linear(1, hidden_size)   # Assuming input_clade is a scalar value
+        self.input_time_fc = nn.Linear(1, hidden_size)    # Assuming input_time is a scalar value
+        self.input_firstnode_fc = nn.Linear(1, hidden_size)    # Assuming input_time is a scalar value
+        self.input_proxnode_fc = nn.Linear(1, hidden_size)    # Assuming input_time is a scalar value
     def forward(self, input_ids, input_clade, input_time, input_firstnode, input_proxnode):
         embedded = self.dropout(self.embedding(input_ids))
+        # Pass through multiple GRU layers
         output = embedded
-        for gru in self.gru_layers:
+        for gru in self.grus:
             output, hidden = gru(output)
-        # Process additional features
-        input_clade_processed = self.input_clade_fc(input_clade[:, -2:])   # Slice input_clade along dimension 1
+         # Process additional features
+        input_clade_processed = self.input_clade_fc(input_clade[:, -2:])    # Slice input_clade along dimension 1
         input_time_processed = self.input_time_fc(input_time[:, -2:])
         input_firstnode_processed = self.input_firstnode_fc(input_firstnode[:, -2:])
         input_proxnode_processed = self.input_proxnode_fc(input_proxnode[:, -2:])
-        input_clade_processed = input_clade_processed.unsqueeze(1)  # Expand dimensions to match with 'output' tensor
-        input_time_processed = input_time_processed.unsqueeze(1)    # Expand dimensions to match with 'output' tensor
-        input_firstnode_processed = input_firstnode_processed.unsqueeze(1)    # Expand dimensions to match with 'output' tensor
-        input_proxnode_processed = input_proxnode_processed.unsqueeze(1)    # Expand dimensions to match with 'output' tensor
         # Concatenate the outputs of GRU and additional features
-        output = torch.cat((output, input_clade_processed, input_time_processed, input_firstnode_processed, input_proxnode_processed), dim=1)   # Change this line from dim=1 to dim=2
+        output = torch.cat((output, input_clade_processed.unsqueeze(1),
+                            input_time_processed.unsqueeze(1),
+                            input_firstnode_processed.unsqueeze(1),
+                            input_proxnode_processed.unsqueeze(1)), dim=1)    # Change this line from dim=1 to dim=2
         return output, hidden
 
 
@@ -171,19 +176,19 @@ class BahdanauAttention(nn.Module):
         return context, weights
 
 class AttnDecoderRNN(nn.Module):
-    def __init__(self, hidden_size, output_size, dropout_p=0.1, num_layers=2):  # Add a new parameter for number of layers
+    def __init__(self, hidden_size, output_size, num_gru_layers=2, dropout_p=0.1):
         super(AttnDecoderRNN, self).__init__()
         self.embedding = nn.Embedding(output_size, hidden_size)
         self.attention = BahdanauAttention(hidden_size)
-        self.gru_layers = nn.ModuleList([nn.GRU(2 * hidden_size, hidden_size, batch_first=True) for _ in range(num_layers)])  # Create a list of GRU layers
+        self.gru_layers = nn.ModuleList([nn.GRU(2 * hidden_size, hidden_size, batch_first=True) for _ in range(num_gru_layers)])
         self.out = nn.Linear(hidden_size, output_size)
         self.dropout = nn.Dropout(dropout_p)
     def forward(self, encoder_outputs, encoder_hidden, target_tensor=None):
         batch_size = encoder_outputs.size(0)
-                decoder_input = torch.empty(batch_size, 1, dtype=torch.long, device=device).fill_(SOS_token)
+        decoder_input = torch.empty(batch_size, 1, dtype=torch.long, device=device).fill_(SOS_token)
         decoder_hidden = encoder_hidden
         for gru in self.gru_layers:
-            output, hidden = self.forward_step(decoder_input, decoder_hidden, encoder_outputs)
+            output, hidden, _ = self.forward_step(decoder_input, decoder_hidden, encoder_outputs)
             decoder_hidden = hidden
         decoder_outputs = []
         attentions = []
@@ -195,21 +200,22 @@ class AttnDecoderRNN(nn.Module):
             attentions.append(attn_weights)
             if target_tensor is not None:
                 # Teacher forcing: Feed the target as the next input
-                decoder_input = target_tensor[:, i].unsqueeze(1) # Teacher forcing
+                decoder_input = target_tensor[:, i].unsqueeze(1)
             else:
                 # Without teacher forcing: use its own predictions as the next input
                 _, topi = decoder_output.topk(1)
-                decoder_input = topi.squeeze(-1).detach()  # detach from history as input
+                decoder_input = topi.squeeze(-1).detach()
         decoder_outputs = torch.cat(decoder_outputs, dim=1)
         decoder_outputs = F.log_softmax(decoder_outputs, dim=-1)
         attentions = torch.cat(attentions, dim=1)
         return decoder_outputs, decoder_hidden, attentions
     def forward_step(self, input, hidden, encoder_outputs):
-        embedded =  self.dropout(self.embedding(input))
+        embedded = self.dropout(self.embedding(input))
         query = hidden.permute(1, 0, 2)
         context, attn_weights = self.attention(query, encoder_outputs)
         input_gru = torch.cat((embedded, context), dim=2)
-        output, hidden = self.gru(input_gru, hidden)
+        for gru in self.gru_layers:
+            output, hidden = gru(input_gru, hidden)
         output = self.out(output)
         return output, hidden, attn_weights
 
@@ -230,7 +236,7 @@ def tensorsFromPair(pair):
     return (input_tensor, clade_tensor, time_tensor, target_tensor)
 
 def get_dataloader(batch_size):
-    input_lang, output_lang, pairs, clade, time, firstnode, proxnode = prepareData('eng', 'fra', True)  # Modify the return values here
+    input_lang, output_lang, pairs, clade, time, firstnode, proxnode = prepareData('eng', 'fra', False)  # Modify the return values here
     n = len(pairs)
     # Additional features: input_clade and input_time
     input_clade = np.array(clade).reshape(-1, 1)
@@ -266,9 +272,9 @@ def train_epoch(dataloader, encoder, decoder, encoder_optimizer,
         input_ids, target_tensor, input_clade, input_time, input_firstnode, input_proxnode = data
         encoder_optimizer.zero_grad()
         decoder_optimizer.zero_grad()
-        encoder_outputs, encoder_hidden = encoder(input_ids, input_clade, input_time, input_firstnode, input_proxnode)  # Pass the new inputs to EncoderRNN
+        encoder_outputs, encoder_hidden = encoder(input_ids, input_clade, input_time, input_firstnode, input_proxnode)
         decoder_outputs, _, _ = decoder(encoder_outputs, encoder_hidden, target_tensor)
-        loss = criterion(decoder_outputs.view(-1, decoder_outputs.size(-1)), target_tensor.view(-1))
+        loss = criterion(decoder_outputs.contiguous().view(-1, decoder_outputs.size(-1)), target_tensor.contiguous().view(-1))
         loss.backward()
         encoder_optimizer.step()
         decoder_optimizer.step()
@@ -315,8 +321,8 @@ def train(train_dataloader, encoder, decoder, n_epochs, learning_rate=0.001, pri
         # Save best loss and models checkpoint
         if loss < best_loss:
             best_loss = loss
-            torch.save({'encoder': encoder.state_dict(), 'decoder': decoder.state_dict(), 'loss': best_loss}, "~GitHub/iecor/pyTorch Runs/second_best_model_source.pth")
-            showPlot(plot_losses, "~GitHub/iecor/pyTorch Runs/second_progress_source_1.png")
+            torch.save({'encoder': encoder.state_dict(), 'decoder': decoder.state_dict(), 'loss': best_loss}, "~GitHub/iecor/pyTorch Runs/third_best_model.pth")
+            showPlot(plot_losses, "~GitHub/iecor/pyTorch Runs/third_progress.png")
 
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
@@ -396,11 +402,11 @@ hidden_size = 160
 batch_size = 32
 
 input_lang, output_lang, train_dataloader = get_dataloader(batch_size)
-input_lang2, output_lang2, train_dataloader2 = get_dataloader(1)
+#input_lang2, output_lang2, train_dataloader2 = get_dataloader(1)
 
 
-encoder = EncoderRNN(input_lang.n_words, hidden_size).to(device)
-decoder = AttnDecoderRNN(hidden_size, output_lang.n_words).to(device)
+encoder = EncoderRNN(input_lang.n_words, hidden_size, num_gru_layers=3).to(device)
+decoder = AttnDecoderRNN(hidden_size, output_lang.n_words, num_gru_layers=3).to(device)
 
 train(train_dataloader, encoder, decoder, 10000, print_every=1, plot_every=1)
 
